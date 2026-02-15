@@ -44,6 +44,9 @@ def load_lottieurl(url):
 # Load DNA Animation (Medical/Scientific theme)
 lottie_dna = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_4kji20Y9.json")
 
+# Define Dataset Path
+dataset_path = "mediscan_ckd_diagnostic_P5.csv"
+
 # Global CSS for Animations
 st.markdown("""
 <style>
@@ -496,10 +499,10 @@ st.markdown("""
 # ============================================================
 
 @st.cache_resource
-def load_and_process_data_v2():
+def load_and_process_data_v2(file_path):
     """Load and preprocess the CKD dataset. Cached for performance."""
     # Step 1: Initialize DataProcessor with the path to our CSV dataset
-    processor = DataProcessor(r"c:\Users\ANEETA PETER\Documents\gt_training\project_5_streamlit\mediscan_ckd_diagnostic_P5.csv")
+    processor = DataProcessor(file_path)
     
     # Step 2: Load the CSV into a pandas DataFrame
     df = processor.load_data()
@@ -519,7 +522,12 @@ def load_and_process_data_v2():
 
 # Show a loading spinner while data is being processed
 with st.spinner("Initializing MediScan System..."):
-    processor = load_and_process_data_v2()
+    # Use the dynamic dataset path
+    if not os.path.exists(dataset_path):
+         st.error(f"Dataset not found at: {dataset_path}")
+         st.stop()
+         
+    processor = load_and_process_data_v2(dataset_path)
 
 # ============================================================
 # AUTO-TRAIN ML MODEL ON STARTUP
@@ -804,10 +812,10 @@ elif selected == "Exploratory Analysis":
     
     # --- Load RAW Data for Analysis (to show missing values before imputation) ---
     @st.cache_data
-    def load_raw_data():
-        return pd.read_csv(r"c:\Users\ANEETA PETER\Documents\gt_training\project_5_streamlit\mediscan_ckd_diagnostic_P5.csv")
+    def load_raw_data(file_path):
+        return pd.read_csv(file_path)
     
-    raw_df = load_raw_data()
+    raw_df = load_raw_data(dataset_path)
     
     # 1. Dataset Statistics
     col_stats1, col_stats2, col_stats3 = st.columns(3)
