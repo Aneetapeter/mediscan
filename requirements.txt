@@ -12,3 +12,4 @@ requests
 streamlit-lottie
 streamlit-option-menu
 threadpoolctl
+streamlit-lottie
