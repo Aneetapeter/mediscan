@@ -45,8 +45,9 @@ def load_lottieurl(url):
 # Load DNA Animation (Medical/Scientific theme)
 lottie_dna = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_4kji20Y9.json")
 
-# Define Dataset Path
-dataset_path = "mediscan_ckd_diagnostic_P5.csv"
+# Define Dataset Path (Robust for Cloud & Local)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+dataset_path = os.path.join(current_dir, 'mediscan_ckd_diagnostic_P5.csv')
 
 # Global CSS for Animations
 st.markdown("""
