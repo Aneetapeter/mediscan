@@ -11,6 +11,7 @@
 
 import streamlit as st          # Streamlit — builds the web dashboard UI
 import pandas as pd             # Data manipulation — DataFrames, CSV handling
+import os                       # For path handling
 import plotly.express as px     # Interactive charts (histograms, scatter, pie)
 import numpy as np              # Numerical operations
 import matplotlib.pyplot as plt # Static plotting (used for SHAP plots)
