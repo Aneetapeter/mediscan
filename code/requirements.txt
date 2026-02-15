@@ -2,7 +2,13 @@ streamlit
 pandas
 numpy
 plotly
-scikit-learn
-seaborn
 matplotlib
+seaborn
+scikit-learn
+xgboost
+shap
+imbalanced-learn
+requests
+streamlit-lottie
 streamlit-option-menu
+threadpoolctl
